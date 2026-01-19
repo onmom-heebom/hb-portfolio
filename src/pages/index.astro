@@ -1,16 +1,29 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="CHOI HEEBEOM — Portfolio">
+  <div slot="info">
+    <section class="home-cover">
+      <h2 class="cover-title">About</h2>
+      <p class="prose">
+        몸과 움직임을 매개로 공연을 만들고, 교육과 연구를 진행합니다.<br>
+        개인 작업과 협업 프로젝트를 오가며, 한 사람의 몸이 조직하는 시간과 감각을 기반으로 한 관계 맺기를 탐구합니다.
+      </p>
+
+      <figure class="cover-portrait">
+        <img src="/images/portrait.jpg" alt="Portrait" />
+        <figcaption class="photo-credit">© 류진욱</figcaption>
+      </figure>
+      <h3 class="contact-title">Contact</h3>
+      <div class="meta">
+        <div>heebom@onmom.info</div>
+        <div>
+          <a href="https://instagram.com/" target="_blank" rel="noreferrer">
+            Instagram: @onmom.heebom
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,392 @@
+:root{
+  --font: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --text: 14px;
+  --meta: 12px;
+  --lh: 1.45;
+
+  --pad: 48px;
+  --gap: 72px;
+  --sidebar-w: 340px;
+
+  --ink: #111;
+  --muted: #777;
+  --bg: #fff;
+
+  --max: 760px;   /* 콘텐츠 최대 폭(원하면 조절) */
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  overflow: hidden; /* 전체 페이지 스크롤 제거: 오른쪽(main)만 스크롤 */
+  font-family: var(--font);
+  font-size: var(--text);
+  line-height: var(--lh);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+a{ color: inherit; text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* =========================
+   Layout & Scrolling (single source of truth)
+   ========================= */
+
+.layout{
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+
+  /* 좌/상/하 여백은 유지, 오른쪽만 0 */
+  padding: var(--pad) 0 var(--pad) var(--pad);
+  gap: var(--gap);
+}
+
+/* Left */
+.sidebar{
+  width: var(--sidebar-w);
+  overflow-y: auto;
+  min-height: 0;
+
+  /* 메뉴가 너무 딱 붙는 느낌 방지 */
+  padding: 0; /* layout에서 이미 pad를 주므로, sidebar 자체는 0으로 시작 */
+}
+
+.sidebar h1{
+  font-size: var(--text);
+  font-weight: 600;
+  margin: 0 0 14px 0;
+}
+
+/* Top links (Approach / CV) */
+.top-link{
+  display: block;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Category groups */
+.nav-group{ margin: 0 0 22px 0; }
+.nav-group > summary::-webkit-details-marker{ display: none; }
+
+.nav-group-title{
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--meta);
+  color: var(--muted);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  position: relative;
+  padding-left: 16px;
+}
+.nav-group-title::before{
+  content: "+";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 400;
+}
+.nav-group[open] > .nav-group-title::before{ content: "−"; }
+
+.nav{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav li{ margin: 4px 0; }
+.nav a{
+  display: inline-flex;
+  gap: 10px;
+  align-items: baseline;
+
+  /* 카테고리 아래 프로젝트 제목 들여쓰기 */
+  padding-left: 18px;
+}
+.active{ text-decoration: underline; }
+
+/* Right */
+.main{
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* 스크롤바는 끝으로: main에는 padding 주지 않는다 */
+  padding: 0;
+
+  /* main-inner(760px)를 오른쪽으로 붙이기 */
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 오른쪽 실제 콘텐츠 영역: 폭 고정 + 안쪽 여백 */
+.main-inner{
+  width: 100%;
+  max-width: var(--max);
+  box-sizing: border-box;
+
+  /* 콘텐츠 읽기용 여백 (스크롤바는 main에 있으므로 OK) */
+  padding: 0 24px 96px 24px;
+}
+
+/* =========================
+   Common typography blocks
+   ========================= */
+
+.prose{ margin-top: 16px; font-size: 13px; line-height: 1.7; }
+.prose p{ margin: 0 0 12px 0; }
+.prose h2{ font-size: var(--text); font-weight: 600; margin: 18px 0 10px 0; }
+
+.section-title{
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.gallery{ margin-top: 18px; }
+.gallery img{
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 14px 0;
+}
+
+/* =========================
+   Home cover
+   ========================= */
+
+.home-cover{ width: 100%; }
+
+.home-cover .cover-title,
+.page-title{
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.home-cover .contact-title{
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 12px 0 4px 0;
+}
+
+.cover-portrait{
+  width: 100%;
+  margin-bottom: 18px;
+}
+.cover-portrait img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.photo-credit{
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+.home-cover .meta{ margin-top: 18px; }
+.info .meta{
+  font-size: var(--meta);
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* =========================
+   Approach: language blocks
+   ========================= */
+
+.page-body{
+  display: flex;
+  flex-direction: column;
+}
+.lang-block:first-of-type{ margin-bottom: 56px; }
+
+/* =========================
+   Project page
+   ========================= */
+
+.project{ padding-bottom: 80px; }
+
+.project-header{
+  display: grid;
+  grid-template-columns: 72px 1fr 1fr;
+  gap: 56px;
+  margin-bottom: 18px;
+}
+.project-header .meta{ font-size: var(--meta); color: var(--muted); }
+
+.title{ font-size: 18px; margin: 0; }
+.summary{ margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+.versions{ margin-top: 28px; }
+
+.version{
+  padding: 14px 0 18px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.version-head{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.version-title{
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.version-sub{
+  margin-top: 0;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.version-overview{
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+/* Version inner layout (2 columns) */
+.version-body{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+/* Subtitles: Information / Credits */
+.version-subtitle{
+  margin: 0 0 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Lists inside version blocks */
+.version-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Version title emphasis */
+.version-title{
+  font-weight: 600; /* 볼드 처리 */
+}
+
+/* Overview spacing (below 2 columns) */
+.version-overview{
+  margin-top: 24px;
+}
+
+.credits{
+  margin: 10px 0 0;
+  padding-left: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.slideshow{ margin-top: 12px; }
+.slide-img{
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 300ms linear;
+  opacity: 1;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px){
+  :root{
+    --pad: 20px;
+    --gap: 24px;
+    --sidebar-w: 1fr;
+    --max: 760px; /* 모바일에서는 폭 제한이 크게 체감되지 않음 */
+  }
+
+  body{ overflow: auto; }  /* 모바일은 전체 스크롤이 더 안정적일 때가 많음 */
+  .layout{
+    height: auto;
+    display: block;
+    overflow: visible;
+    padding: var(--pad);
+  }
+
+  .sidebar{
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    margin-bottom: 24px;
+  }
+
+  .main{
+    height: auto;
+    overflow: visible;
+    padding-left: 0;
+  }
+
+  .main-inner{
+    max-width: 100%;
+    padding: 0 0 48px 0;
+  }
+
+  .project-header{ grid-template-columns: 1fr; gap: 10px; }
+}
+/* Project detail: shared intro (slot="info") */
+.project-intro{
+  color: var(--muted);
+  font-size: var(--meta);
+  line-height: 1.6;
+
+  margin-bottom: 40px; /* ← 여기 */
+}
+
+.project-intro__text{
+  margin: 0 0 10px 0;
+}
+
+.project-intro__contact{
+  margin: 0;
+}
+/* Project title & summary (full width) */
+.project-head{
+  margin: 0 0 24px 0;
+}
+
+.project-title{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.project-summary{
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+}

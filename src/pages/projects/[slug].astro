@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+/** 동적 라우트에 필수: 어떤 slug들이 있는지 Astro에 알려줌 */
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((p) => ({
+    params: { slug: p.slug },
+    props: { entry: p },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await entry.render();
+const versions = entry.data.versions ?? [];
+const PROJECTS_INTRO = `몸과 움직임을 매개로 공연을 만들고, 교육과 연구를 진행합니다.
+개인 작업과 협업 프로젝트를 오가며, 한 사람의 몸이 조직하는 시간과 감각을 기반으로 한 관계 맺기를 탐구합니다.`;
+
+const PROJECTS_CONTACT = `heebom@onmom.info
+Instagram: @onmom.heebom`;
+---
+
+<BaseLayout
+  activeSlug={entry.slug}
+  title={`CHOI HEEBEOM — ${entry.data.title}`}
+>
+  <section class="project">
+<header class="project-head">
+  <h1 class="project-title">{entry.data.title}</h1>
+
+  {entry.data.summary ? (
+    <p class="project-summary">{entry.data.summary}</p>
+  ) : null}
+</header>
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    {versions.length ? (
+      <section class="versions">
+        <h2 class="section-title">Versions</h2>
+
+        {versions.map((v) => (
+          <article class="version">
+<div class="version-head">
+  <h3 class="version-title">{v.label}</h3>
+</div>
+
+<div class="version-body">
+  <div class="version-info">
+    <h4 class="version-subtitle">Information</h4>
+    <ul class="version-list">
+      {v.date ? <li>date: {v.date}</li> : null}
+      {v.venue ? <li>venue: {v.venue}</li> : null}
+      {v.program ? <li>program: {v.program}</li> : null}
+    </ul>
+  </div>
+
+  <div class="version-credits">
+    <h4 class="version-subtitle">Credits</h4>
+    <ul class="version-list">
+      {v.credits?.map((c) => (
+        <li>{c}</li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+{v.overview ? <p class="version-overview">{v.overview}</p> : null}
+
+            {v.images?.length ? (
+              <div class="slideshow" data-images={JSON.stringify(v.images)}>
+                <img class="slide-img" src={v.images[0]} alt={`${v.label} image`} loading="lazy" />
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </section>
+    ) : null}
+  </section>
+
+  <div slot="info" class="project-intro">
+    <p class="project-intro__text">
+      {PROJECTS_INTRO.split("\n").map((line, i) => (
+        <>
+          {line}{i < PROJECTS_INTRO.split("\n").length - 1 ? <br /> : null}
+        </>
+      ))}
+    </p>
+
+    <p class="project-intro__contact">
+      {PROJECTS_CONTACT.split("\n").map((line, i) => (
+        <>
+          {line}{i < PROJECTS_CONTACT.split("\n").length - 1 ? <br /> : null}
+        </>
+      ))}
+    </p>
+  </div>
+</BaseLayout>

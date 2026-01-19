@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+import { getCollection } from "astro:content";
+
+const { activeSlug, title = "Portfolio" } = Astro.props;
+
+const all = await getCollection("projects");
+const sorted = all
+  .filter((p) => p.data.category !== "info")
+  .sort((a, b) => a.data.order - b.data.order);
+
+const byCategory = {
+  personal: sorted.filter((p) => p.data.category === "personal"),
+  collab: sorted.filter((p) => p.data.category === "collab"),
+  education: sorted.filter((p) => p.data.category === "education"),
+};
+const isActiveCategory = (items) =>
+  items.some((p) => p.slug === activeSlug);
+
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="layout">
+<aside class="sidebar">
+  <a class="top-link" href="/approach">Approach</a>
+
+  <h1>Projects</h1>
+
+  <details class="nav-group" open={isActiveCategory(byCategory.personal)}>
+    <summary class="nav-group-title">Personal</summary>
+    <ul class="nav">
+      {byCategory.personal.map((p) => (
+        <li>
+          <a class={p.slug === activeSlug ? "active" : ""} href={`/projects/${p.slug}/`}>
+            <span>{p.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+
+  <details class="nav-group" open={isActiveCategory(byCategory.collab)}>
+    <summary class="nav-group-title">Collaboration</summary>
+    <ul class="nav">
+      {byCategory.collab.map((p) => (
+        <li>
+          <a class={p.slug === activeSlug ? "active" : ""} href={`/projects/${p.slug}/`}>
+            <span>{p.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+
+  <details class="nav-group" open={isActiveCategory(byCategory.education)}>
+    <summary class="nav-group-title">Education</summary>
+    <ul class="nav">
+      {byCategory.education.map((p) => (
+        <li>
+          <a class={p.slug === activeSlug ? "active" : ""} href={`/projects/${p.slug}/`}>
+            <span>{p.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+
+  <a class="top-link" href="/cv">CV</a>
+</aside>
+
+<main class="main">
+  <div class="main-inner">
+    <section class="info">
+      <slot name="info" />
+    </section>
+
+    <slot />
+  </div>
+</main>
+    </div>
+    <script is:inline>
+  // 아주 가벼운 슬라이드쇼: data-images=["/a.jpg","/b.jpg"...]를 순환
+  const slideshows = document.querySelectorAll(".slideshow");
+
+  slideshows.forEach((wrap) => {
+    const raw = wrap.getAttribute("data-images");
+    if (!raw) return;
+
+    let images;
+    try { images = JSON.parse(raw); } catch { return; }
+    if (!Array.isArray(images) || images.length < 2) return;
+
+    const img = wrap.querySelector(".slide-img");
+    if (!img) return;
+
+    let i = 0;
+    const interval = 2500; // 2.5초 (원하면 조절)
+
+    /*setInterval(() => {
+     img.style.opacity = "0";
+     setTimeout(() => {
+      i = (i + 1) % images.length;
+      img.src = images[i];
+      img.style.opacity = "1";
+    }, 200);
+  }, interval);*/
+});
+</script>
+  </body>
+</html>
