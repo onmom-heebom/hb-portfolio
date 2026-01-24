@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="CHOI HEEBEOM — Portfolio">
+<BaseLayout title="최희범 - 포트폴리오">
   <div slot="info">
     <section class="home-cover">
       <h2 class="cover-title">About</h2>
@@ -10,20 +10,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         몸과 움직임을 매개로 공연을 만들고, 교육과 연구를 진행합니다.<br>
         개인 작업과 협업 프로젝트를 오가며, 한 사람의 몸이 조직하는 시간과 감각을 기반으로 한 관계 맺기를 탐구합니다.
       </p>
+    <h3 class="contact-title">Contact</h3>
+    <div class="meta contact-meta">
+      <div>heebom@onmom.info</div>
+      <div>
+        <a href="https://instagram.com/" target="_blank" rel="noreferrer">
+          Instagram: @onmom.heebom
+        </a>
+      </div>
+    </div>
 
-      <figure class="cover-portrait">
+      <figure class="cover-portrait cover-portrait--ambient">
         <img src="/images/portrait.jpg" alt="Portrait" />
         <figcaption class="photo-credit">© 류진욱</figcaption>
       </figure>
-      <h3 class="contact-title">Contact</h3>
-      <div class="meta">
-        <div>heebom@onmom.info</div>
-        <div>
-          <a href="https://instagram.com/" target="_blank" rel="noreferrer">
-            Instagram: @onmom.heebom
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
 </BaseLayout>

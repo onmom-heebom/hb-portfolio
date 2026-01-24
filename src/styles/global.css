@@ -1,8 +1,17 @@
 :root{
-  --font: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --text: 14px;
-  --meta: 12px;
+   /* Font stack */
+  --font: ui-sans-serif, system-ui, -apple-system,
+          "Apple SD Gothic Neo", "Noto Sans KR",
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          
+  /* Typography scale */
+  --text: 14px;        /* 기본 UI / 라벨 */
+  --text-small: 13px;  /* 본문 설명 */
+  --meta: 11px;        /* 메타 정보 */
+  --title: 18px;       /* 타이틀 */
+  
   --lh: 1.45;
+  --lh-prose: 1.7;
 
   --pad: 48px;
   --gap: 72px;
@@ -61,8 +70,54 @@ a:hover{ text-decoration: underline; }
 
 .sidebar h1{
   font-size: var(--text);
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 0 14px 0;
+}
+
+/* Site identity (name + concept) */
+.site-identity{
+  display: block;
+  margin: 0 0 28px 0;
+
+  text-decoration: none; /* 링크 밑줄 방지 */
+}
+
+.site-identity:hover{
+  text-decoration: none; /* hover에도 밑줄 금지 */
+}
+
+.site-name{
+  font-size: 15px;      /* 희범님이 원하신 크기 */
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.name-ko{
+  letter-spacing: 0;
+}
+
+.name-sep{
+  opacity: 0.5;
+}
+
+.name-en{
+  text-transform: uppercase;
+  letter-spacing: 0.03em; /* 영문만 살짝 넓혀서 시각적 길이 확보 */
+}
+
+.site-tagline{
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--muted);
+  letter-spacing: 0.02em;
 }
 
 /* Top links (Approach / CV) */
@@ -71,6 +126,7 @@ a:hover{ text-decoration: underline; }
   margin: 0 0 12px 0;
   font-weight: 700;
   text-decoration: none;
+  font-size: var(--text);
 }
 
 /* Category groups */
@@ -81,7 +137,7 @@ a:hover{ text-decoration: underline; }
   list-style: none;
   cursor: pointer;
   user-select: none;
-  font-size: var(--meta);
+  font-size: var(--text);
   color: var(--muted);
   margin: 0 0 8px 0;
   text-transform: uppercase;
@@ -146,7 +202,7 @@ a:hover{ text-decoration: underline; }
    Common typography blocks
    ========================= */
 
-.prose{ margin-top: 16px; font-size: 13px; line-height: 1.7; }
+.prose{ margin-top: 16px; font-size: var(--text-small); line-height: var(--lh-prose); }
 .prose p{ margin: 0 0 12px 0; }
 .prose h2{ font-size: var(--text); font-weight: 600; margin: 18px 0 10px 0; }
 
@@ -174,29 +230,34 @@ a:hover{ text-decoration: underline; }
 
 .home-cover .cover-title,
 .page-title{
-  font-size: 0.85rem;
+  font-size: var(--text);
   font-weight: 700;
   margin: 0 0 4px 0;
 }
 
 .home-cover .contact-title{
-  font-size: 0.8rem;
+  font-size: var(--text);
   font-weight: 700;
   color: var(--muted);
   margin: 12px 0 4px 0;
 }
 
-.cover-portrait{
+.cover-portrait--ambient{
   width: 100%;
-  margin-bottom: 18px;
+  margin-top: 56px; 
+  margin-bottom: 32px;
+
+  margin-left: 0;
+  margin-right: auto;
+  align-self: flex-start;
 }
-.cover-portrait img{
+.cover-portrait--ambient img{
   width: 100%;
   height: auto;
   display: block;
 }
 .photo-credit{
-  font-size: 12px;
+  font-size: var(--meta);
   line-height: 1.2;
   margin-top: 6px;
   opacity: 0.7;
@@ -207,6 +268,26 @@ a:hover{ text-decoration: underline; }
   color: var(--muted);
   margin-top: 10px;
 }
+
+/* Ensure info slot uses full column width */
+.info{
+  width: 100%;
+}
+.info > *{
+  width: 100%;
+}
+
+/* contact as readable content */
+.home-cover .contact-meta{
+  margin-top: 8px;
+  font-size: var(--text-small); /* 13px */
+  line-height: 1.6;
+}
+
+.home-cover .contact-meta a{
+  font-weight: 500;
+}
+
 
 /* =========================
    Approach: language blocks
@@ -232,8 +313,8 @@ a:hover{ text-decoration: underline; }
 }
 .project-header .meta{ font-size: var(--meta); color: var(--muted); }
 
-.title{ font-size: 18px; margin: 0; }
-.summary{ margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.title{ font-size: var(--title); font-weight: 600; margin: 0; }
+.summary{ margin: 8px 0 0; color: var(--muted); font-size: var(--text-small); line-height: var(--lh-prose); }
 
 .versions{ margin-top: 28px; }
 
@@ -249,20 +330,20 @@ a:hover{ text-decoration: underline; }
 }
 .version-title{
   margin: 0;
-  font-size: 15px;
+  font-size: var(--text-large);
   color: var(--ink);
   font-weight: 600;
 }
 .version-sub{
   margin-top: 0;
-  font-size: 12px;
+  font-size: var(--meta);
   color: var(--muted);
   white-space: nowrap;
 }
 .version-overview{
   margin: 10px 0 0;
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: var(--text);
+  line-height: var(--lh-prose);
 }
 /* Version inner layout (2 columns) */
 .version-body{
@@ -275,7 +356,7 @@ a:hover{ text-decoration: underline; }
 /* Subtitles: Information / Credits */
 .version-subtitle{
   margin: 0 0 6px 0;
-  font-size: 12px;
+  font-size: var(--meta);
   font-weight: 600;
   color: var(--muted);
 }
@@ -285,8 +366,8 @@ a:hover{ text-decoration: underline; }
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: var(--text-small);
+  line-height: var(--lh);
   color: var(--muted);
 }
 
@@ -303,7 +384,7 @@ a:hover{ text-decoration: underline; }
 .credits{
   margin: 10px 0 0;
   padding-left: 16px;
-  font-size: 12px;
+  font-size: var(--meta);
   color: var(--muted);
 }
 
@@ -360,7 +441,7 @@ a:hover{ text-decoration: underline; }
 .project-intro{
   color: var(--muted);
   font-size: var(--meta);
-  line-height: 1.6;
+  line-height: var(--lh-prose);
 
   margin-bottom: 40px; /* ← 여기 */
 }
@@ -379,14 +460,14 @@ a:hover{ text-decoration: underline; }
 
 .project-title{
   margin: 0;
-  font-size: 18px;
+  font-size: var(--title); font-weight: 600;
   font-weight: 600;
   color: var(--ink);
 }
 
 .project-summary{
   margin: 8px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--text-small);
+  line-height: var(--lh-prose);
   color: var(--ink);
 }
