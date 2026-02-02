@@ -6,7 +6,7 @@ summary: "한 사람의 몸이 무대 위에서 어떻게 연극적 시간을 �
 cover: "/images/placeholder.jpg"
 
 versions:
-  - label: "v3. — 1인의 몸을 위한 드라마트루기: 공작새 되기 & 러브 히메 펫탄코 짱"
+  - label: "[2025 꾸준히 해서 슥] 1인의 몸을 위한 드라마트루기: 공작새 되기 & 러브 히메 펫탄코 짱"
     date: "2026.01.09."
     venue: "SAPY 청년예술청 그레이홀"
     program: "2025 꾸준히 해서 슥"
@@ -19,7 +19,7 @@ versions:
       - "/images/portrait.jpg"
     imageCredit: "© 류진욱"
 
-  - label: "v.2 — 1인의 몸을 위한 드라마트루기"
+  - label: "[2025 대전 1인극 축제] 1인의 몸을 위한 드라마트루기"
     date: "2025.09.28."
     venue: "대전 이음 아트홀"
     program: "제 4회 대전 1인극 축제"
@@ -33,8 +33,8 @@ versions:
       - "/images/one-body_v2_pic_3.jpeg"
     imageCredit: "© 서현제"
 
-  - label: "original — 1인의 몸을 위한 드라마트루기"
-    date: "2024.12.10-11."
+  - label: "[2024 움직여 쿼크] 1인의 몸을 위한 드라마트루기"
+    date: "2024.12.10.-12.11."
     venue: "서점 인스크립트"
     program: "인스크립트 1인 창작 프로젝트 움직여 쿼크"
     overview: "우리는 어느 서점에 있지만 이곳은 더 이상 여느 서점이 아닙니다. 

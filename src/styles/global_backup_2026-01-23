@@ -1,17 +1,10 @@
 :root{
-   /* Font stack */
-  --font: ui-sans-serif, system-ui, -apple-system,
-          "Apple SD Gothic Neo", "Noto Sans KR",
-          "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-          
-  /* Typography scale */
-  --text: 14px;        /* 기본 UI / 라벨 */
-  --text-small: 13px;  /* 본문 설명 */
-  --meta: 11px;        /* 메타 정보 */
-  --title: 18px;       /* 타이틀 */
-  
+  --font: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --text: 14px;
+  --text-large: 15px;
+  --title: 17.5px;
+  --meta: 11px;
   --lh: 1.45;
-  --lh-prose: 1.7;
 
   --pad: 48px;
   --gap: 72px;
@@ -69,8 +62,8 @@ a:hover{ text-decoration: underline; }
 }
 
 .sidebar h1{
-  font-size: var(--text);
-  font-weight: 700;
+  font-size: var(--text-large);
+  font-weight: 600;
   margin: 0 0 14px 0;
 }
 
@@ -126,7 +119,7 @@ a:hover{ text-decoration: underline; }
   margin: 0 0 12px 0;
   font-weight: 700;
   text-decoration: none;
-  font-size: var(--text);
+  font-size: var(--text-large);
 }
 
 /* Category groups */
@@ -202,9 +195,9 @@ a:hover{ text-decoration: underline; }
    Common typography blocks
    ========================= */
 
-.prose{ margin-top: 16px; font-size: var(--text-small); line-height: var(--lh-prose); }
+.prose{ margin-top: 16px; font-size: 13px; line-height: 1.7; }
 .prose p{ margin: 0 0 12px 0; }
-.prose h2{ font-size: var(--text); font-weight: 600; margin: 18px 0 10px 0; }
+.prose h2{ font-size: var(--text-large); font-weight: 600; margin: 18px 0 10px 0; }
 
 .section-title{
   font-size: 12px;
@@ -230,34 +223,29 @@ a:hover{ text-decoration: underline; }
 
 .home-cover .cover-title,
 .page-title{
-  font-size: var(--text);
+  font-size: 0.85rem;
   font-weight: 700;
   margin: 0 0 4px 0;
 }
 
 .home-cover .contact-title{
-  font-size: var(--text);
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--muted);
   margin: 12px 0 4px 0;
 }
 
-.cover-portrait--ambient{
+.cover-portrait{
   width: 100%;
-  margin-top: 56px; 
-  margin-bottom: 32px;
-
-  margin-left: 0;
-  margin-right: auto;
-  align-self: flex-start;
+  margin: 0 0 18px 0;   /* figure 기본 여백 제거 + 아래 여백만 */
 }
-.cover-portrait--ambient img{
+.cover-portrait img{
   width: 100%;
   height: auto;
   display: block;
 }
 .photo-credit{
-  font-size: var(--meta);
+  font-size: 12px;
   line-height: 1.2;
   margin-top: 6px;
   opacity: 0.7;
@@ -276,18 +264,6 @@ a:hover{ text-decoration: underline; }
 .info > *{
   width: 100%;
 }
-
-/* contact as readable content */
-.home-cover .contact-meta{
-  margin-top: 8px;
-  font-size: var(--text-small); /* 13px */
-  line-height: 1.6;
-}
-
-.home-cover .contact-meta a{
-  font-weight: 500;
-}
-
 
 /* =========================
    Approach: language blocks
@@ -313,10 +289,10 @@ a:hover{ text-decoration: underline; }
 }
 .project-header .meta{ font-size: var(--meta); color: var(--muted); }
 
-.title{ font-size: var(--title); font-weight: 600; margin: 0; }
-.summary{ margin: 8px 0 0; color: var(--muted); font-size: var(--text); line-height: var(--lh-prose); }
+.title{ font-size: 18px; margin: 0; }
+.summary{ margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 
-.versions{ margin-top: 36px; }
+.versions{ margin-top: 28px; }
 
 .version{
   padding: 14px 0 18px;
@@ -330,65 +306,33 @@ a:hover{ text-decoration: underline; }
 }
 .version-title{
   margin: 0;
-  font-size: var(--text-large);
+  font-size: 15px;
   color: var(--ink);
   font-weight: 600;
 }
 .version-sub{
   margin-top: 0;
-  font-size: var(--meta);
+  font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
 }
-.version-overview,
-.version-questions,
-.version-process,
-.version-methodology{
-  margin: 10px 0 0;
-  font-size: var(--text);
-  line-height: var(--lh-prose);
-}
-.version-questions .version-list,
-.version-process .version-list,
-.version-methodology{
-  margin-top: 6px;
-}
-
-.version-questions .version-list li,
-.version-process .version-list li
-.version-methodology .version-list li{
-  margin-bottom: 8px;
-}
-/* spacing between text blocks */
 .version-overview{
-  margin-bottom: 28px;
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
 }
-
-.version-questions{
-  margin-bottom: 28px;
-}
-
-.version-process{
-  margin-bottom: 36px;
-}
-
-.version-methodology{
-  margin-bottom: 36px;
-}
-
 /* Version inner layout (2 columns) */
 .version-body{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
-  margin-top: 48px;
-  margin-bottom: 32px;
+  margin-top: 24px;
 }
 
 /* Subtitles: Information / Credits */
 .version-subtitle{
   margin: 0 0 6px 0;
-  font-size: var(--meta);
+  font-size: 12px;
   font-weight: 600;
   color: var(--muted);
 }
@@ -398,49 +342,9 @@ a:hover{ text-decoration: underline; }
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: var(--text-small);
-  line-height: var(--lh);
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--muted);
-}
-/* Inquiry & Process should look like overview text, not meta */
-.version-questions .version-list,
-.version-process .version-list,
-.version-methodology .version-list{
-  font-size: var(--text);
-  line-height: var(--lh-prose);
-  color: var(--ink);
-  list-style: none;
-  padding-left: 0;
-  margin: 10px 0 0;
-}
-
-.version-questions .version-list li,
-.version-process .version-list li,
-.version-methodology .version-list li{
-  position: relative;
-  padding-left: 1.1em;
-  margin: 0 0 6px 0;
-}
-
-.version-questions .version-list li::before,
-.version-process .version-list li::before,
-.version-methodology .version-list li::before{
-  content: "✶";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--ink);
-}
-
-.version-overview-block .version-subtitle,
-.version-questions .version-subtitle,
-.version-process .version-subtitle,
-.version-methodology .version-subtitle{
-  margin-bottom: 10px;
-  font-size: var(--text);
-  line-height: var(--lh-prose);
-  color: var(--ink);
-  font-weight: 600;
 }
 
 /* Version title emphasis */
@@ -448,17 +352,15 @@ a:hover{ text-decoration: underline; }
   font-weight: 600; /* 볼드 처리 */
 }
 
-.version-overview-block,
-.version-questions,
-.version-process,
-.version-methodology{
-  margin-top: 32px;   /* 섹션 사이 여유 */
+/* Overview spacing (below 2 columns) */
+.version-overview{
+  margin-top: 24px;
 }
 
 .credits{
   margin: 10px 0 0;
   padding-left: 16px;
-  font-size: var(--meta);
+  font-size: 12px;
   color: var(--muted);
 }
 
@@ -515,7 +417,7 @@ a:hover{ text-decoration: underline; }
 .project-intro{
   color: var(--muted);
   font-size: var(--meta);
-  line-height: var(--lh-prose);
+  line-height: 1.6;
 
   margin-bottom: 40px; /* ← 여기 */
 }
@@ -534,14 +436,14 @@ a:hover{ text-decoration: underline; }
 
 .project-title{
   margin: 0;
-  font-size: var(--title); font-weight: 600;
+  font-size: 18px;
   font-weight: 600;
   color: var(--ink);
 }
 
 .project-summary{
   margin: 8px 0 0;
-  font-size: var(--text);
-  line-height: var(--lh-prose);
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--ink);
 }

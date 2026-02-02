@@ -18,6 +18,9 @@ const projects = defineCollection({
           venue: z.string().optional(),
           program: z.string().optional(),
           overview: z.string().optional(),
+          inquiry: z.array(z.string()).optional(),
+          process: z.array(z.string()).optional(),
+          methodology: z.array(z.string()).optional(),
           credits: z.array(z.string()).optional(),
           images: z.array(z.string()).optional(),
         })

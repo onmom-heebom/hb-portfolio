@@ -41,39 +41,74 @@ Instagram: @onmom.heebom`;
 
     {versions.length ? (
       <section class="versions">
-        <h2 class="section-title">Versions</h2>
+        <h2 class="section-title">Works</h2>
 
         {versions.map((v) => (
           <article class="version">
-<div class="version-head">
-  <h3 class="version-title">{v.label}</h3>
-</div>
-
-<div class="version-body">
-  <div class="version-info">
-    <h4 class="version-subtitle">Information</h4>
-    <ul class="version-list">
-      {v.date ? <li>date: {v.date}</li> : null}
-      {v.venue ? <li>venue: {v.venue}</li> : null}
-      {v.program ? <li>program: {v.program}</li> : null}
-    </ul>
-  </div>
-
-  <div class="version-credits">
-    <h4 class="version-subtitle">Credits</h4>
-    <ul class="version-list">
-      {v.credits?.map((c) => (
-        <li>{c}</li>
-      ))}
-    </ul>
-  </div>
-</div>
-
-{v.overview ? <p class="version-overview">{v.overview}</p> : null}
-
+            <div class="version-head">
+              <h3 class="version-title">{v.label}</h3>
+            </div>
+            
+            <div class="version-body">
+              <div class="version-info">
+                <h4 class="version-subtitle">Information</h4>
+                <ul class="version-list">
+                  {v.date ? <li>date: {v.date}</li> : null}
+                  {v.venue ? <li>venue: {v.venue}</li> : null}
+                  {v.program ? <li>program: {v.program}</li> : null}
+                </ul>
+              </div>
+              
+              <div class="version-credits">
+                <h4 class="version-subtitle">Credits</h4>
+                <ul class="version-list">
+                  {v.credits?.map((c) => (<li>{c}</li>))}
+                </ul>
+              </div>
+            </div>
+            
             {v.images?.length ? (
               <div class="slideshow" data-images={JSON.stringify(v.images)}>
-                <img class="slide-img" src={v.images[0]} alt={`${v.label} image`} loading="lazy" />
+                <img 
+                  class="slide-img" 
+                  src={v.images[0]} 
+                  alt={`${v.label} image`} 
+                  loading="lazy" 
+                />
+              </div>
+            ) : null}
+            
+            {v.overview ? ( 
+              <div class="version-overview-block">
+                <h4 class="version-subtitle">Overview</h4>
+                <p class="version-overview">{v.overview}</p>
+              </div>
+            ) : null}
+            
+            {v.inquiry?.length ? (
+              <div class="version-questions">
+                <h4 class="version-subtitle">Inquiry</h4>
+                <ul class="version-list">
+                  {v.inquiry.map((q) => (<li>{q}</li>))}
+                </ul>
+              </div>
+            ) : null}
+            
+            {v.process?.length ? (
+              <div class="version-process">
+                <h4 class="version-subtitle">Process</h4>
+                <ul class="version-list">
+                  {v.process.map((step) => (<li>{step}</li>))}
+                </ul>
+              </div>
+            ) : null}
+            
+            {v.methodology?.length ? (
+              <div class="version-methodology">
+                <h4 class="version-subtitle">Methodology</h4>
+                <ul class="version-list">
+                  {v.methodology.map((step) => (<li>{step}</li>))}
+                </ul>
               </div>
             ) : null}
           </article>
